@@ -1,0 +1,114 @@
+- compile:
+    run: g++ -std=c++11 -Wall -Werror main.cpp -o main # timeout: 10
+    blocker: true
+
+- givebonus:
+    run: ls    
+    points: 20
+
+- case_1:
+    run: ./main input1.txt
+    points: 10
+    script:
+      - expect: "1:1" # timeout: 8
+      - expect: "2:1" # timeout: 8
+      - expect: "Total resistance=(2.9\\d*|3|3.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0
+
+- case_2:
+    run: ./main input2.txt
+    points: 10
+    script:
+      - expect: "1:1" # timeout: 8
+      - expect: "2:2" # timeout: 8
+      - expect: "3:1" # timeout: 8
+      - expect: "Total resistance=(4.9\\d*|5|5.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0   
+
+- case_3:
+    run: ./main input3.txt
+    points: 10
+    script:
+      - expect: "1:1" # timeout: 8
+      - expect: "2:1" # timeout: 8
+      - expect: "3:1" # timeout: 8
+      - expect: "4:1" # timeout: 8
+      - expect: "Total resistance=(9.9\\d*|10|10.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0  
+
+- case_4:
+    run: ./main input4.txt
+    points: 10
+    script:
+      - expect: "1:1" # timeout: 8
+      - expect: "2:1" # timeout: 8
+      - expect: "4:1" # timeout: 8
+      - expect: "Total resistance=(6.9\\d*|7|7.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0  
+
+- case_5:
+    run: ./main input5.txt
+    points: 10
+    script:
+      - expect: "(NO_RESISTOR|NO RESISTOR)" # timeout: 8
+      - expect: "1:1" # timeout: 8
+      - expect: "4:1" # timeout: 8
+      - expect: "Total resistance=(4.9\\d*|5|5.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0 
+
+- case_6:
+    run: ./main input6.txt
+    points: 10
+    script:
+      - expect: "2:1" # timeout: 8
+      - expect: "3.5:2" # timeout: 8
+      - expect: "4:1" # timeout: 8
+      - expect: "6:2" # timeout: 8
+      - expect: "9:3" # timeout: 8
+      - expect: "Total resistance=(18.9\\d*|19|19.0\\d*)\\s+ohm" # timeout: 10
+      - expect: "2:1" # timeout: 8
+      - expect: "3.5:2" # timeout: 8
+      - expect: "6:1" # timeout: 8
+      - expect: "9:3" # timeout: 8
+      - expect: "Total resistance=(17.9\\d*|18|18.0\\d*)\\s+ohm" # timeout: 10
+      - expect: "(NO_RESISTOR|NO RESISTOR)" # timeout: 8
+      - expect: "2:1" # timeout: 8
+      - expect: "3.5:2" # timeout: 8
+      - expect: "7:1" # timeout: 8
+      - expect: "9:2" # timeout: 8
+      - expect: "Total resistance=(20.49|20.5)\\d*\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0
+
+
+- case_7:
+    run: ./main input7.txt
+    points: 10
+    script:
+      - expect: "(NO_RESISTOR|NO RESISTOR)"  # timeout: 10
+      - expect: "2:1" # timeout: 8
+      - expect: "4:2" # timeout: 8
+      - expect: "6:3" # timeout: 8
+      - expect: "Total resistance=(5.9\\d*|6|6.0\\d*)\\s+ohm" # timeout: 10
+      - expect: "Total resistance=(7.9\\d*|8|8.0\\d*)\\s+ohm" # timeout: 10
+      - expect: _EOF_ 
+    exit: 0
+
+- case_8:
+    run: ./main input8.txt
+    points: 10
+    script:
+      - expect: "(NO_RESISTOR|NO RESISTOR)"  # timeout: 10
+      - expect: "2:1" # timeout: 8
+      - expect: "4:2" # timeout: 8
+      - expect: "6:3" # timeout: 8
+      - expect: "Total resistance=(5.9\\d*|6|6.0\\d*)\\s+ohm" # timeout: 10
+      - expect: "Total resistance=(7.9\\d*|8|8.0\\d*)\\s+ohm" # timeout: 10
+      - expect: "(NO_RESISTOR|NO RESISTOR)"  # timeout: 10
+      - expect: _EOF_ 
+    exit: 0
